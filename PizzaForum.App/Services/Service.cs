@@ -6,9 +6,9 @@
     {
         protected ForumContext context;
 
-        protected Service(ForumContext context)
+        protected Service()
         {
-            this.context = context;
+            this.context = Data.Initializer.Context;
         }
     }
 }

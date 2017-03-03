@@ -2,7 +2,7 @@
 {
     public class LoginUserBindingModel
     {
-        public string Username { get; set; }
+        public string UserInput { get; set; }
 
         public string Password { get; set; }
     }

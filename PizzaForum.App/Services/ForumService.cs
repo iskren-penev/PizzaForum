@@ -3,17 +3,13 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using PizzaForum.App.BindingModels;
-    using PizzaForum.App.Data;
     using PizzaForum.App.Models;
     using SimpleHttpServer.Models;
 
-    public class UserService : Service
+    public class ForumService : Service
     {
-        public UserService(ForumContext context) : base(context)
-        {
-        }
 
-        public bool Register(RegisterUserBindingModel model)
+        public bool RegisterUser(RegisterUserBindingModel model)
         {
             if (!IsValidUser(model))
             {
@@ -31,23 +27,28 @@
             return true;
         }
 
-        public void Login(HttpSession session, LoginUserBindingModel model)
+        public void LoginUser(HttpSession session, LoginUserBindingModel model)
         {
-            User user = this.context.Users.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-            if (user != null)
-            {
-                Session dbSession = new Session()
-                {
-                    Id = session.Id,
-                    User = user,
-                    IsActive = true
-                };
+            User user = this.context.Users.FirstOrDefault(u => (u.Username == model.UserInput || u.Email == model.UserInput) && u.Password == model.Password);
 
-                this.context.Sessions.Add(dbSession);
-                this.context.SaveChanges();
-            }
+            Session dbSession = new Session()
+            {
+                Id = session.Id,
+                User = user,
+                IsActive = true
+            };
+
+            this.context.Sessions.Add(dbSession);
+            this.context.SaveChanges();
+
         }
 
+        public bool IsValidUser(LoginUserBindingModel model)
+        {
+            return
+                this.context.Users.Any(
+                    u => (u.Username == model.UserInput || u.Email == model.UserInput) && u.Password == model.Password);
+        }
         private bool IsValidUser(RegisterUserBindingModel model)
         {
             //check if the password and confirmed password match
