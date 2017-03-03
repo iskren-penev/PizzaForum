@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7D5F4759-D289-4568-AC17-487DFD116C24}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F2EF3059-AA6C-45C8-9DBB-9D36E62AF1B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PizzaForum.App</RootNamespace>
-    <AssemblyName>PizzaForum.App</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>SimpleMVC</RootNamespace>
+    <AssemblyName>SimpleMVC</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,41 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Constants.cs" />
-    <Compile Include="Helpers\ContentReader.cs" />
-    <Compile Include="RouteTable.cs" />
-    <Compile Include="StartUp.cs" />
+    <Compile Include="Attributes\Methods\HttpGetAttribute.cs" />
+    <Compile Include="Attributes\Methods\HttpMethodAttribute.cs" />
+    <Compile Include="Attributes\Methods\HttpPostAttribute.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\Generic\IActionResult.cs" />
+    <Compile Include="Interfaces\Generic\IRenderable.cs" />
+    <Compile Include="Interfaces\IActionResult.cs" />
+    <Compile Include="Interfaces\IInvocable.cs" />
+    <Compile Include="Interfaces\IRenderable.cs" />
+    <Compile Include="MvcContext.cs" />
+    <Compile Include="MvcEngine.cs" />
+    <Compile Include="Routers\ControllerRouter.cs" />
+    <Compile Include="ViewEngine\ActionResult.cs" />
+    <Compile Include="ViewEngine\Generic\ActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SimpleHttpServer\SimpleHttpServer.csproj">
-      <Project>{9e139539-c272-488a-bfcf-caddf458df9d}</Project>
+      <Project>{9E139539-C272-488A-BFCF-CADDF458DF9D}</Project>
       <Name>SimpleHttpServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimpleMVC\SimpleMVC.csproj">
-      <Project>{f2ef3059-aa6c-45c8-9dbb-9d36e62af1b8}</Project>
-      <Name>SimpleMVC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BindingModels\" />
-    <Folder Include="Content\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
