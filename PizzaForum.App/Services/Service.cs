@@ -4,11 +4,11 @@
 
     public abstract class Service
     {
-        protected ForumContext context;
+        protected UnitOfWork context;
 
         protected Service()
         {
-            this.context = Data.Initializer.Context;
+            this.context = Data.Initializer.UnitOfWork;
         }
     }
 }

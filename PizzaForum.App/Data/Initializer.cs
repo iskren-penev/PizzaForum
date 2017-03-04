@@ -2,8 +2,8 @@
 {
     public static class Initializer
     {
-        private static ForumContext context;
+        private static UnitOfWork unitOfWork;
 
-        public static ForumContext Context => context ?? (context = new ForumContext());
+        public static UnitOfWork UnitOfWork => unitOfWork ?? (unitOfWork = new UnitOfWork(new ForumContext()));
     }
 }

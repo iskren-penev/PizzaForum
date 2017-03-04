@@ -61,6 +61,10 @@
     <Compile Include="BindingModels\NewTopicBindingModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\UnitOfWork.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Services\HomeService.cs" />
     <Compile Include="Services\TopicService.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />

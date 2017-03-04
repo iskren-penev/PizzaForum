@@ -8,7 +8,7 @@
     {
         public IEnumerable<TopicViewModel> GetLatestTopicViewModels()
         {
-            IEnumerable<TopicViewModel> viewModels = this.context.Topics
+            IEnumerable<TopicViewModel> viewModels = this.context.Topics.GetAll()
                 .OrderByDescending(t => t.PublishDate)
                 .Take(10)
                 .Select(topic => new TopicViewModel()
