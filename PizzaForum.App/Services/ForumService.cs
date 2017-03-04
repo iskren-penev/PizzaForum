@@ -23,7 +23,7 @@
                 IsAdmin = this.IsFirstRegisteredUser()
             };
             this.context.Users.Add(userEntity);
-            this.context.SaveChanges();
+            this.context.Commit();
             return true;
         }
 
@@ -39,14 +39,14 @@
             };
 
             this.context.Sessions.Add(dbSession);
-            this.context.SaveChanges();
+            this.context.Commit();
 
         }
 
         public bool IsValidUser(LoginUserBindingModel model)
         {
             return
-                this.context.Users.Any(
+                this.context.Users.GetAll().Any(
                     u => (u.Username == model.UserInput || u.Email == model.UserInput) && u.Password == model.Password);
         }
         private bool IsValidUser(RegisterUserBindingModel model)
@@ -73,7 +73,7 @@
         //check if there are any users in the DB
         private bool IsFirstRegisteredUser()
         {
-            if (this.context.Users.Any())
+            if (this.context.Users.GetAll().Any())
             {
                 return false;
             }

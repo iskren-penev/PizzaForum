@@ -8,7 +8,7 @@
 
         IRepository<Topic> Topics { get; }
 
-        IRepository<Session> Session { get; }
+        IRepository<Session> Sessions { get; }
 
         IRepository<Category> Categories { get; }
 

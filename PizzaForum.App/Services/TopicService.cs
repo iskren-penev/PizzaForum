@@ -10,7 +10,7 @@
     {
         public IEnumerable<string> GetCategoryNames()
         {
-            IEnumerable<string> categories = this.context.Categories.Select(cat => cat.Name);
+            IEnumerable<string> categories = this.context.Categories.GetAll().Select(cat => cat.Name);
 
             return categories;
         }
@@ -40,7 +40,7 @@
                 PublishDate = DateTime.Now
             };
             this.context.Topics.Add(topic);
-            this.context.SaveChanges();
+            this.context.Commit();
         }
     }
 }

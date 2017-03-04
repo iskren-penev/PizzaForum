@@ -11,7 +11,7 @@
         public IEnumerable<CategoryViewModel> GetAllCategoryViewModels()
         {
             IEnumerable<CategoryViewModel> categories =
-                this.context.Categories.Select(category => new CategoryViewModel()
+                this.context.Categories.GetAll().Select(category => new CategoryViewModel()
                 {
                     Id = category.Id,
                     Name = category.Name
@@ -36,18 +36,18 @@
                 Name = model.Name
             };
             this.context.Categories.Add(category);
-            this.context.SaveChanges();
+            this.context.Commit();
         }
 
         public void DeleteCategory(int id)
         {
-            this.context.Categories.Remove(this.context.Categories.Find(id));
-            this.context.SaveChanges();
+            this.context.Categories.Delete(this.context.Categories.FindById(id));
+            this.context.Commit();
         }
 
         public bool IsCategoryIdValid(int id)
         {
-            if (!this.context.Categories.Any(c=> c.Id == id))
+            if (!this.context.Categories.GetAll().Any(c=> c.Id == id))
             {
                 return false;
             }
@@ -56,7 +56,7 @@
 
         public EditCategoryViewModel GetEditCategoryViewModel(int id)
         {
-            Category category = this.context.Categories.Find(id);
+            Category category = this.context.Categories.FindById(id);
             EditCategoryViewModel viewModel = new EditCategoryViewModel()
             {
                 Id = category.Id,
@@ -67,9 +67,9 @@
 
         public void EditCategory(EditCategoryBindingModel model)
         {
-            Category category = this.context.Categories.Find(model.Id);
+            Category category = this.context.Categories.FindById(model.Id);
             category.Name = model.Name;
-            this.context.SaveChanges();
+            this.context.Commit();
         }
     }
 }

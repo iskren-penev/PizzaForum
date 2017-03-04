@@ -25,7 +25,7 @@
         {
             get { return this.topics ?? (this.topics = new Repository<Topic>(this.context.Topics)); }
         }
-        public IRepository<Session> Session
+        public IRepository<Session> Sessions
         {
             get { return this.sessions ?? (this.sessions = new Repository<Session>(this.context.Sessions)); }
         }
