@@ -6,6 +6,7 @@
     public class User
     {
         private ICollection<Topic> topics;
+        private ICollection<Reply> replies;
 
         public User()
         {
@@ -26,6 +27,12 @@
         {
             get {return this.topics;}
             set { this.topics = value; }
+        }
+
+        public virtual ICollection<Reply> Replies
+        {
+            get { return this.replies; }
+            set { this.replies = value; }
         }
     }
 }

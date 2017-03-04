@@ -20,11 +20,15 @@
 
         public virtual User Author { get; set; }
 
+        public int? CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
         public string Content { get; set; }
 
         public DateTime PublishDate { get; set; }
 
-        public ICollection<Reply> Replies
+        public virtual ICollection<Reply> Replies
         {
             get {return this.replies;}
             set { this.replies = value; }
